@@ -7,12 +7,15 @@ import TodoInput from "../AppComponents/todoInput";
 import CustomCard from "../AppComponents/CustomCard";
 
 import { cookies } from "next/headers";
+import EnvAPI from "@/lib/EnvAPI";
 
 export const dynamic = "force-dynamic";
 
 export default async function Todo() {
   const serverSession = await getServerSession(authOptions);
   console.log("serverSession", serverSession);
+
+  const url = EnvAPI();
 
   if (serverSession === null) {
     redirect("/auth/signin");
@@ -24,7 +27,7 @@ export default async function Todo() {
     console.log("access token", accessToken);
 
     const getTodos = await fetch(
-      `http://localhost:8000/api/get-todos?username=${serverSession.user.name}`,
+      `${url}/api/get-todos?username=${serverSession.user.name}`,
       {
         method: "GET",
         headers: {

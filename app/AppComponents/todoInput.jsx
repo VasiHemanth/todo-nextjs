@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import EnvAPI from "@/lib/EnvAPI";
 
 export default function TodoInput({ username }) {
   const [submit, setSubmit] = useState("");
@@ -13,6 +14,7 @@ export default function TodoInput({ username }) {
   const { data } = useSession();
   const { toast } = useToast();
   const router = useRouter();
+  const url = EnvAPI();
 
   console.log("data", data);
 
@@ -24,7 +26,7 @@ export default function TodoInput({ username }) {
     if (submit.length == 0) return;
 
     const submitTodo = await fetch(
-      `http://localhost:8000/api/create-todo?username=${username}&todo-data=${submit}`,
+      `${url}/api/create-todo?username=${username}&todo-data=${submit}`,
       {
         method: "GET",
         headers: {

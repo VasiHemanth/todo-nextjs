@@ -5,10 +5,13 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { jwtDecode } from "jwt-decode";
+import EnvAPI from '@/lib/EnvAPI';
 
 // const getCurrentEpochTime = () => {
 //   return Math.floor(new Date().getTime() / 1000);
 // };
+
+const url = EnvAPI()
 
 export const authOptions = NextAuth({
     providers: [
@@ -29,7 +32,7 @@ export const authOptions = NextAuth({
             console.log("credentials", credentials)
 
 
-            const CheckLogin = await fetch('http://localhost:8000/api/token/', {
+            const CheckLogin = await fetch(`${url}api/token/`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -88,7 +91,7 @@ export const authOptions = NextAuth({
 
         if( token['exp'] * 1000 - Date.now() <= 1 * 60 * 1000) {
           console.log('fetching new access token')
-          const getRefreshToken = await fetch('http://localhost:8000/api/token/refresh/', {
+          const getRefreshToken = await fetch(`${url}/api/token/refresh/`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
