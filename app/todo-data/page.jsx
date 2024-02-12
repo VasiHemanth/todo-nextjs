@@ -45,7 +45,7 @@ export default async function Todo() {
           {serverSession != undefined ? (
             <div className="my-2">
               <p className="py-2 text-center font-semibold">
-                {serverSession.user.name}'s list
+                {` ${serverSession.user.name}'s list`}
               </p>
               <div>
                 <TodoInput username={serverSession.user.name} />
