@@ -32,7 +32,7 @@ export const authOptions = NextAuth({
             console.log("credentials", credentials)
 
 
-            const CheckLogin = await fetch(`${url}api/token/`, {
+            const CheckLogin = await fetch(`${url}/api/token/`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -45,7 +45,7 @@ export const authOptions = NextAuth({
 
             const user = await CheckLogin.json()
 
-            // console.log("user after api call", user)
+            console.log("user after api call", user)
       
             if (user) {
               // Any object returned will be saved in `user` property of the JWT
