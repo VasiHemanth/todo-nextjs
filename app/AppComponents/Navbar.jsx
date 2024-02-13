@@ -16,9 +16,14 @@ import {
 import { LogOut } from "lucide-react";
 
 export default function Navbar() {
-  const { data } = useSession();
+  const { data, status } = useSession();
 
   console.log("navbar session", data);
+  console.log("navbar status", status);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="w-full h-14 border-b">

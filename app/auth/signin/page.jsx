@@ -40,7 +40,7 @@ export default function Login() {
 
   const router = useRouter();
 
-  const { session } = useSession();
+  const { data } = useSession();
 
   const onSubmit = async (loginData) => {
     // Login logic
@@ -64,7 +64,6 @@ export default function Login() {
         });
       }
       if (callback?.ok && !callback?.error) {
-        alert("Logged in successfully!");
         toast({
           description: "Logged in successfully!",
           // action: <ToastAction altText="Try again">Try again</ToastAction>,

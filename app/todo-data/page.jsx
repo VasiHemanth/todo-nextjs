@@ -23,7 +23,6 @@ export default async function Todo() {
     const cookieStore = cookies();
 
     const accessToken = cookieStore.get("access_token");
-
     console.log("access token", accessToken);
 
     const getTodos = await fetch(

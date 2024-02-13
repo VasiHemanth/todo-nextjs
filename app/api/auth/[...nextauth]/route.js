@@ -128,6 +128,8 @@ export const authOptions = NextAuth({
         console.log('user in session callbacks', user)
         console.log('token in session callbacks', token)
         session.user['access_token'] = token.access
+        let expire_date = new Date(token.exp * 1000)
+        session.expires = expire_date.toLocaleString();
         console.log('session in route', session)
         return session;
       },
